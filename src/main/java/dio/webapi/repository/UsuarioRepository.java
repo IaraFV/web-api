@@ -2,6 +2,7 @@ package dio.webapi.repository;
 
 import org.springframework.stereotype.Repository;
 
+import dio.webapi.handler.BusinessException;
 import dio.webapi.model.Usuario;
 
 import java.util.ArrayList;
@@ -9,7 +10,9 @@ import java.util.List;
 
 @Repository
 public class UsuarioRepository {
-        public void save(Usuario usuario){
+
+    public void save(Usuario usuario){
+        if(usuario.getLogin() == null) throw new BusinessException("O login é obrigatorio");
         System.out.println("SAVE - Recebendo o usuário na camada de repositório");
         System.out.println(usuario);
     }
